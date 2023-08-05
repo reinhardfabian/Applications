@@ -1,0 +1,13 @@
+.border {
+    border: thick solid rgb(0, 0, 0);
+}
+.even {
+    background-color: #d2c1c1;
+}
+table, th, td {
+    border: 1px solid;
+    text-align: center;
+}
+caption { 
+    caption-side: top;
+}
