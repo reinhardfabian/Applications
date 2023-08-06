@@ -13,10 +13,9 @@ const companies = [
 */
 const table = document.getElementById('company-table');
 document.getElementById('caption').textContent = `${companies.length} applications`;
+const tableHead = table.createTHead();
 const tableBody = table.createTBody();
 
-//fill table head
-const tableHead = table.createTHead();
 let tr = tableHead.insertRow(0);
 for (const property in companies[0]) {
   let th = document.createElement('th');
@@ -34,14 +33,14 @@ function sortTableBody(property) { //local function
   } else {
     companies.sort((a, b) => a[property].localeCompare(b[property]));
   }
-  // erase table body
-  while (tableBody.firstChild !== null) {
-    tableBody.removeChild(tableBody.firstChild);
-  }
   printTableBody(property)
 }
 
 function printTableBody() {
+  // erase table body
+  while (tableBody.firstChild !== null) {
+    tableBody.removeChild(tableBody.firstChild);
+  }
   // generate table body
   let i = 0; // i is table row‚
   for (const item of companies) {
