@@ -58,5 +58,4 @@ function printTableBody() {
   }
 }
 
-
 document.addEventListener('DOMContentLoaded', printTableBody);
