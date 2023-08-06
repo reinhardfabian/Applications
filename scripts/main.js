@@ -41,7 +41,7 @@ function sortTableBody(property) { //local function
   printTableBody(property)
 }
 
-function printTableBody(){
+function printTableBody() {
   // generate table body
   let i = 0; // i is table row‚
   for (const item of companies) {
