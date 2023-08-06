@@ -1,16 +1,5 @@
 'use strict';
-/*   // this should be the list.js file ....
-const companies = [
-  {
-    date: new Date('07 16 2023'), //first column must be date
-    name: 'Company Name A',
-    job: 'Developer',
-    location: 'Hamburg',
-    success: '❓'       // or '✅' or '💩' for example
-  },
-  ...
-];
-*/
+
 const table = document.getElementById('company-table');
 document.getElementById('caption').textContent = `${companies.length} applications`;
 const tableHead = table.createTHead();
