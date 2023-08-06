@@ -4,7 +4,7 @@
 
 You need a **list.js** File in `/scripts`, for example: 
 
-```bash
+```
 const companies = [
   {
     date: new Date('07 16 2023'), //first column must be date
