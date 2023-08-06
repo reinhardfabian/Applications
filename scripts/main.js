@@ -54,7 +54,7 @@ function printTableBody() {
       }
       // debugger;
     }
-    if (i % 2) tr.setAttribute('class', 'row even');  //pretty print
+    if (i % 2) tr.setAttribute('class', 'even');  //pretty print
   }
 }
 
