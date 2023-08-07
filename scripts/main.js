@@ -23,11 +23,7 @@ function printTableBody() {
   for (let i=0; i<companies.length; i++) {
     tr = tableBody.insertRow();
     for (const property in companies[0]) {
-      if (property == 'date') {
-        tr.insertCell().textContent = companies[i].date.toLocaleDateString();
-      } else {
-        tr.insertCell().textContent = companies[i][property];
-      }
+      tr.insertCell().textContent = (property == 'date') ? companies[i].date.toLocaleDateString() : companies[i][property] ;
       // debugger;
     }
     if (!(i%2)) tr.setAttribute('class', 'even');  //pretty print
