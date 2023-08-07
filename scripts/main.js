@@ -2,10 +2,8 @@
 
 const table = document.getElementById('company-table');
 document.getElementById('caption').textContent = `${companies.length} applications`;
-const tableHead = table.createTHead();
-const tableBody = table.createTBody();
 
-let tr = tableHead.insertRow(0);
+let tr = table.createTHead().insertRow(0);
 for (const property in companies[0]) {
   let th = document.createElement('th');
   th.textContent = property.replace(/^\w/, m => m.toUpperCase());
@@ -14,16 +12,7 @@ for (const property in companies[0]) {
   tr.appendChild(th);
 }
 
-//function to fill table body via sort criteria (column)
-function sortTableBody(property) { //local function
-  // sort list
-  if (property == 'date') {
-    companies.sort((a, b) => a.date - b.date);
-  } else {
-    companies.sort((a, b) => a[property].localeCompare(b[property]));
-  }
-  printTableBody(property)
-}
+const tableBody = table.createTBody();
 
 function printTableBody() {
   // erase table body
@@ -45,6 +34,16 @@ function printTableBody() {
     }
     if (i % 2) tr.setAttribute('class', 'even');  //pretty print
   }
+}
+
+function sortTableBody(property) { //local function
+  // sort list
+  if (property == 'date') {
+    companies.sort((a, b) => a.date - b.date);
+  } else {
+    companies.sort((a, b) => a[property].localeCompare(b[property]));
+  }
+  printTableBody(property)
 }
 
 document.addEventListener('DOMContentLoaded', printTableBody);
