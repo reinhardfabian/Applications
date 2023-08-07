@@ -3,7 +3,7 @@
 const table = document.getElementById('company-table');
 document.getElementById('caption').textContent = `${companies.length} applications`;
 
-let tr = table.createTHead().insertRow(0);
+let tr = table.createTHead().insertRow();
 for (const property in companies[0]) {
   let th = document.createElement('th');
   th.textContent = property.replace(/^\w/, m => m.toUpperCase());
@@ -20,19 +20,17 @@ function printTableBody() {
     tableBody.removeChild(tableBody.firstChild);
   }
   // generate table body
-  let i = 0; // i is table row‚
-  for (const item of companies) {
-    let j = 0; // j is table column
-    tr = tableBody.insertRow(i++);
+  for (let i=0; i<companies.length; i++) {
+    tr = tableBody.insertRow();
     for (const property in companies[0]) {
       if (property == 'date') {
-        tr.insertCell(j++).textContent = item.date.toLocaleDateString();
+        tr.insertCell().textContent = companies[i].date.toLocaleDateString();
       } else {
-        tr.insertCell(j++).textContent = item[property];
+        tr.insertCell().textContent = companies[i][property];
       }
       // debugger;
     }
-    if (i % 2) tr.setAttribute('class', 'even');  //pretty print
+    if (!(i%2)) tr.setAttribute('class', 'even');  //pretty print
   }
 }
 
