@@ -15,11 +15,7 @@ for (const property in companies[0]) {
 const tableBody = table.createTBody();
 
 function printTableBody(column) {
-  if (column == 'date') {
-    companies.sort((a, b) => a.date - b.date);
-  } else {
-    companies.sort((a, b) => a[column].localeCompare(b[column]));
-  }
+ companies.sort( (column == 'date') ? (a, b) => a.date - b.date : (a, b) => a[column].localeCompare(b[column]) );
   // erase table body
   while (tableBody.firstChild !== null) {
     tableBody.removeChild(tableBody.firstChild);
