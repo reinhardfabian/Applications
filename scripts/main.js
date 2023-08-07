@@ -31,4 +31,3 @@ function printTableBody(column) {
 }
 
 document.addEventListener('DOMContentLoaded', printTableBody('date'));
-
