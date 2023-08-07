@@ -8,13 +8,18 @@ for (const property in companies[0]) {
   let th = document.createElement('th');
   th.textContent = property.replace(/^\w/, m => m.toUpperCase());
   th.setAttribute('id', property);
-  th.addEventListener('click', () => sortTableBody(property));
+  th.addEventListener('click', () => printTableBody(property));
   tr.appendChild(th);
 }
 
 const tableBody = table.createTBody();
 
-function printTableBody() {
+function printTableBody(column) {
+  if (column == 'date') {
+    companies.sort((a, b) => a.date - b.date);
+  } else {
+    companies.sort((a, b) => a[column].localeCompare(b[column]));
+  }
   // erase table body
   while (tableBody.firstChild !== null) {
     tableBody.removeChild(tableBody.firstChild);
@@ -30,14 +35,4 @@ function printTableBody() {
   }
 }
 
-function sortTableBody(property) { //local function
-  // sort list
-  if (property == 'date') {
-    companies.sort((a, b) => a.date - b.date);
-  } else {
-    companies.sort((a, b) => a[property].localeCompare(b[property]));
-  }
-  printTableBody(property)
-}
-
-document.addEventListener('DOMContentLoaded', printTableBody);
+document.addEventListener('DOMContentLoaded', printTableBody('date'));
