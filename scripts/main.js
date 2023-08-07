@@ -3,13 +3,13 @@
 const table = document.getElementById('company-table');
 document.getElementById('caption').textContent = `${companies.length} applications`;
 
-let tr = table.createTHead().insertRow();
+const trHead = table.createTHead().insertRow();
 for (const property in companies[0]) {
   let th = document.createElement('th');
   th.textContent = property.replace(/^\w/, m => m.toUpperCase());
   th.setAttribute('id', property);
   th.addEventListener('click', () => printTableBody(property));
-  tr.appendChild(th);
+  trHead.appendChild(th);
 }
 
 const tableBody = table.createTBody();
@@ -22,7 +22,7 @@ function printTableBody(column) {
   }
   // generate table body
   for (let i=0; i<companies.length; i++) {
-    tr = tableBody.insertRow();
+    const tr = tableBody.insertRow();
     for (const property in companies[0]) {
       tr.insertCell().textContent = (property == 'date') ? companies[i].date.toLocaleDateString() : companies[i][property] ;
       // debugger;
