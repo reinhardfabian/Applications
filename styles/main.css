@@ -45,3 +45,33 @@ caption {
     scale: 0.8;
     background-color: white;
 }
+.loader {
+    display: inline-flex;
+    align-items: center;
+    column-gap: 5px;
+
+}
+.loader__bar {
+    display: inline-block;
+    width: 3px;
+    height: 10px;
+    background-color: black;
+    opacity: .5;
+    border-radius: 10px;
+    animation: scale-up 1000ms var(--d) linear infinite;
+}
+.loader__bar:nth-child(even) {
+    height: 25px;
+}
+.loader__bar:nth-child(3) {
+    height: 40px;
+}
+@keyframes scale-up {
+    25% {
+        opacity: 1;
+        scale: 1 1.5;
+    }
+    50% {
+        scale: 1;
+    }
+}
