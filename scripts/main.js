@@ -7,13 +7,14 @@ for (const property in companies[0]) {
   let th = document.createElement('th');
   th.textContent = property.replace(/^\w/, m => m.toUpperCase());
   th.setAttribute('id', property);
-  th.addEventListener('click', () => printTableBody(property));
+  th.addEventListener('click', (event) => printTableBody(event, property));
   trHead.appendChild(th);
 }
 
 const tableBody = document.getElementById('tablebody');
 
-function printTableBody(column) {
+function printTableBody(event, column) {
+  // console.log(event?.type);
   companies.sort((column == 'date') ? (a, b) => a.date - b.date : (a, b) => a[column].localeCompare(b[column]));
   // erase table body
   while (tableBody.firstChild !== null) {
@@ -30,4 +31,6 @@ function printTableBody(column) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', printTableBody('date'));
+const ev = new Event('click');
+document.getElementById('date').dispatchEvent(ev);
+// document.addEventListener('DOMContentLoaded', () => printTableBody(ev, 'date'));
