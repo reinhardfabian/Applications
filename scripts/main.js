@@ -31,6 +31,5 @@ function printTableBody(event, column) {
   }
 }
 
-const ev = new Event('click');
-document.getElementById('date').dispatchEvent(ev);
+document.getElementById('date').dispatchEvent(new MouseEvent('click'));
 // document.addEventListener('DOMContentLoaded', () => printTableBody(ev, 'date'));
