@@ -2,7 +2,7 @@
     border: thick solid rgb(0, 0, 0);
 }
 
-.even {
+tbody > tr:nth-child(odd) {
     background-color: #d2c1c1;
 }
 

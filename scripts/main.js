@@ -1,9 +1,9 @@
 'use strict';
-
+const properties = ['date', 'name', 'job', 'location', 'success'];  // companylist (companies array) in list.js
 document.getElementById('caption').textContent = `${companies.length} applications`;
 
 const trHead = document.getElementById('trhead');
-for (const property in companies[0]) {
+for (const property of properties) {
   let th = document.createElement('th');
   th.textContent = property.replace(/^\w/, m => m.toUpperCase());
   th.setAttribute('id', property);
@@ -21,13 +21,12 @@ function printTableBody(event, column) {
     tableBody.removeChild(tableBody.firstChild);
   }
   // generate table body
-  for (let i = 0; i < companies.length; i++) {
+  for (let company of companies) {
     const tr = tableBody.insertRow();
-    for (const property in companies[0]) {
-      tr.insertCell().textContent = (property == 'date') ? companies[i].date.toLocaleDateString() : companies[i][property];
+    for (const property of properties) {
+      tr.insertCell().textContent = (property == 'date') ? company.date.toLocaleDateString() : company[property];
       // debugger;
     }
-    if (!(i % 2)) tr.setAttribute('class', 'even');  //pretty print
   }
 }
 
