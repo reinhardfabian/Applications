@@ -1,25 +1,30 @@
 # Applications
 
 ## Installation
+```
+npx http-server 
+```
 
-You need a **list.js** File in `/scripts`, for example: 
+You need a **companies.json** File in your root directory, for example: 
 
 ```
-const companies = [
-  {
-    date: new Date('07 16 2023'), //first column must be date
-    name: 'Company Name A',
-    job: 'Developer',
-    location: 'Hamburg',
-    success: '❓'       // or '✅' or '💩' for example
-  },
-  ...
-];
+{
+    "companies": [
+        {
+            "date": "2023-07-20T22:00:00.000Z",
+            "name": "Company Name A",
+            "job": "Developer",
+            "location": "Hamburg",
+            "success": "❓"
+        },
+        ...
+    ]
+}
 ```
 
 ## Usage
 
-Point you browser to index.html
+Point you browser to http://localhost:8080/index.html
 
 This is only a demo for generating a HTML-Table via DOM scripting.
 I just need something to play with GitHub. 🤣
