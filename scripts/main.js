@@ -5,9 +5,9 @@ document.getElementById('caption').textContent = `${companies.length} applicatio
 const trHead = document.getElementById('trhead');
 for (const property of properties) {
   let th = document.createElement('th');
-  th.textContent = property.replace(/^\w/, m => m.toUpperCase());
+  th.textContent = property.replace(/^\w/, m => m.toUpperCase()); // \w means [a-zA-Z_0-9]
   th.setAttribute('id', property);
-  th.addEventListener('click', (event) => printTableBody(event, property));
+  th.addEventListener('click', (event) => printTableBody(event, property), false); // bubbling phase is default (false)
   trHead.appendChild(th);
 }
 
