@@ -11,21 +11,21 @@ async function init() {
     console.log(response.ok);         // true
     console.log(response.redirected); // false
     console.log(response.url);        // "http://localhost:8080/companies.json"
-    
+
     const result = await response.json();
     const companies = result.companies;
-    
+
     const properties = ['date', 'name', 'job', 'location', 'success'];
     document.getElementById('caption').textContent = `${companies.length} applications`;
 
     const trHead = document.getElementById('trhead');
-    for (const property of properties) {
+    properties.forEach((property) => {
       let th = document.createElement('th');
       th.textContent = property.replace(/^\w/, m => m.toUpperCase()); // \w means [a-zA-Z_0-9]
       th.setAttribute('id', property);
       th.addEventListener('click', (event) => printTableBody(event, property), false); // bubbling phase is default (false)
       trHead.appendChild(th);
-    }
+    });
 
     const tableBody = document.getElementById('tablebody');
 
@@ -37,13 +37,13 @@ async function init() {
         tableBody.removeChild(tableBody.firstChild);
       }
       // generate table body
-      for (let company of companies) {
+      companies.forEach((company) => {
         const tr = tableBody.insertRow();
-        for (const property of properties) {
+        properties.forEach((property) => {
           tr.insertCell().textContent = (property == 'date') ? new Date(company.date).toLocaleDateString() : company[property];
           // debugger;
-        }
-      }
+        })
+      })
     }
     document.getElementById('date').dispatchEvent(new MouseEvent('click'));
   } catch (error) {
