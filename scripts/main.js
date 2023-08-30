@@ -15,7 +15,7 @@ async function init() {
     const result = await response.json();
     const companies = result.companies;
     
-    const properties = ['date', 'name', 'job', 'location', 'success'];  // companylist (companies array) in list.js
+    const properties = ['date', 'name', 'job', 'location', 'success'];
     document.getElementById('caption').textContent = `${companies.length} applications`;
 
     const trHead = document.getElementById('trhead');
