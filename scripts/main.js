@@ -31,7 +31,7 @@ async function init() {
 
     function printTableBody(event, column) {
       // console.log(event?.type);
-      companies.sort((column == 'date') ? (a, b) => new Date(a.date) - new Date(b.date) : (a, b) => a[column].localeCompare(b[column]));
+      companies.sort((column === 'date') ? (a, b) => new Date(a.date) - new Date(b.date) : (a, b) => a[column].localeCompare(b[column]));
       // erase table body
       while (tableBody.firstChild !== null) {
         tableBody.removeChild(tableBody.firstChild);
@@ -40,12 +40,13 @@ async function init() {
       companies.forEach((company) => {
         const tr = tableBody.insertRow();
         properties.forEach((property) => {
-          tr.insertCell().textContent = (property == 'date') ? new Date(company.date).toLocaleDateString() : company[property];
+          tr.insertCell().textContent = (property === 'date') ? new Date(company.date).toLocaleDateString() : company[property];
           // debugger;
         })
       })
     }
-    document.getElementById('date').dispatchEvent(new MouseEvent('click'));
+    // document.getElementById('date').dispatchEvent(new MouseEvent('click'));
+    printTableBody(new MouseEvent('click'), 'date');
   } catch (error) {
     console.error(error);
   }
