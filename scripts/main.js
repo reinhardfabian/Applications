@@ -22,7 +22,7 @@ async function init() {
     properties.forEach((property) => {
       let th = document.createElement('th');
       th.textContent = property.replace(/^\w/, m => m.toUpperCase()); // \w means [a-zA-Z_0-9]
-      th.setAttribute('id', property);
+      // th.setAttribute('id', property);
       th.addEventListener('click', (event) => printTableBody(event, property), false); // bubbling phase is default (false)
       trHead.appendChild(th);
     });
