@@ -1,3 +1,4 @@
 .DS_Store
 companies.json
 scripts/tsconfig.json
+scripts/app.js
