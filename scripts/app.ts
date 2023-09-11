@@ -6,11 +6,10 @@ interface Company {
   success: string;
 }
 
-fetch('companies.json')
-  .then(response => {return response.json()})
-  .then(data => {printTable(data.companies)});
-
-function printTable(companies: Company[]) {
+async function printTable() {
+  const response = await fetch('companies.json');
+  const data = await response.json();
+  const companies: Company[] = data.companies;
   (document.getElementById('caption') as Element).textContent = `${companies.length} applications`;
   const trHead = document.getElementById('trhead') as HTMLTableCellElement;
   type Property = keyof Company;
@@ -44,6 +43,4 @@ function printTable(companies: Company[]) {
   }
 }
 
-
-
-// document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', printTable);
