@@ -1,19 +1,19 @@
-interface Company {
-  date: string;
-  name: string;
-  job: string;
-  location: string;
-  success: string;
-}
-
 async function printTable() {
+  interface Company {
+    date: string;
+    name: string;
+    job: string;
+    location: string;
+    success: string;
+  }
+  type Property = keyof Company;
   const response = await fetch('companies.json');
   const data = await response.json();
   const companies: Company[] = data.companies;
-  (document.getElementById('caption') as Element).textContent = `${companies.length} applications`;
-  const trHead = document.getElementById('trhead') as HTMLTableCellElement;
-  type Property = keyof Company;
   const properties = Object.keys(companies[0]) as Property[];
+  const trHead = document.getElementById('trhead') as HTMLTableCellElement;
+  (document.getElementById('caption') as Element).textContent = `${companies.length} applications`;
+
   properties.forEach((property) => {
     let th = document.createElement('th');
     th.textContent = property.replace(/^\w/, m => m.toUpperCase()); // \w means [a-zA-Z_0-9]
@@ -23,7 +23,7 @@ async function printTable() {
   });
   // document.getElementById('date').dispatchEvent(new MouseEvent('click'));
   printTableBody(new MouseEvent('click'), 'date');
-
+  
   function printTableBody(event: Event, column: Property): void {
     // console.log(event?.type);
     companies.sort((column === 'date') ? (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime() : (a, b) => a[column].localeCompare(b[column]));
