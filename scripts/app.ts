@@ -1,4 +1,7 @@
-async function printTable() {
+const fetchURL = 'companies.json';
+
+async function printTable(event: Event) {
+  // console.log(event?.type);
   interface Company {
     date: string;
     name: string;
@@ -7,7 +10,7 @@ async function printTable() {
     success: string;
   }
   type Property = keyof Company;
-  const response = await fetch('companies.json');
+  const response = await fetch(fetchURL);
   const data = await response.json();
   const companies: Company[] = data.companies;
   const properties = Object.keys(companies[0]) as Property[];
