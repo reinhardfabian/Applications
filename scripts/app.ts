@@ -19,7 +19,7 @@ for (const property of properties) {
 
 (document.getElementById('date') as Element).dispatchEvent(new MouseEvent('click'))
 
-async function printTableBody(event: Event): Promise<void> {
+async function printTableBody (event: Event): Promise<void> {
   const response = await fetch('http://localhost:8080/companies.json')
   const data = await response.json()
   const companies: Company[] = data.companies
