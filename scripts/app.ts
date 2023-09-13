@@ -9,17 +9,17 @@ type Property = keyof Company
 const properties = ['date', 'name', 'job', 'location', 'success'] as Property[]
 const trHead = document.getElementById('trhead') as HTMLTableCellElement
 
-properties.forEach((property) => {
+for (const property of properties) {
   const th = document.createElement('th')
   th.textContent = property.replace(/^\w/, m => m.toUpperCase()) // \w means [a-zA-Z_0-9]
   th.setAttribute('id', property)
   th.onclick = printTableBody
   trHead.appendChild(th)
-});
+}
 
 (document.getElementById('date') as Element).dispatchEvent(new MouseEvent('click'))
 
-async function printTableBody (event: Event): Promise<void> {
+async function printTableBody(event: Event): Promise<void> {
   const response = await fetch('http://localhost:8080/companies.json')
   const data = await response.json()
   const companies: Company[] = data.companies;
