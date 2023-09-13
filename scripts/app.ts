@@ -19,12 +19,12 @@ for (const property of properties) {
 
 (document.getElementById('date') as Element).dispatchEvent(new MouseEvent('click'))
 
-async function printTableBody(event: Event): Promise<void> {
+async function printTableBody (event: Event): Promise<void> {
   const response = await fetch('http://localhost:8080/companies.json')
   const data = await response.json()
   const companies: Company[] = data.companies;
 
-  (document.getElementById('caption') as Element).textContent = `${companies.length} applications`
+  (document.getElementById('caption') as HTMLElement).textContent = `${companies.length} applications`
   const column = (event.target as Element).id as Property
   companies.sort((column === 'date') ? (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime() : (a, b) => a[column].localeCompare(b[column]))
   // erase table body
@@ -33,12 +33,12 @@ async function printTableBody(event: Event): Promise<void> {
     tableBody.removeChild(tableBody.firstChild)
   }
   // generate table body
-  companies.forEach((company) => {
+  for (const company of companies) {
     const tr = tableBody.insertRow()
-    properties.forEach((property) => {
+    for (const property of properties) {
       tr.insertCell().textContent = (property === 'date') ? new Date(company.date).toLocaleDateString() : company[property]
       // debugger;
-    })
-  })
+    }
+  }
 }
 // document.addEventListener('DOMContentLoaded', init)
