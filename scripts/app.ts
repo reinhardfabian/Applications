@@ -17,7 +17,7 @@ for (const property of properties) {
   trHead.appendChild(th)
 }
 
-(document.getElementById('date') as Element).dispatchEvent(new MouseEvent('click'))
+(document.getElementById('date') as HTMLElement).dispatchEvent(new MouseEvent('click'))
 
 async function printTableBody (event: Event): Promise<void> {
   const response = await fetch('http://localhost:8080/companies.json')
