@@ -8,18 +8,16 @@ npx http-server
 You need a **companies.json** File in your root directory, for example: 
 
 ```
-{
-    "companies": [
-        {
-            "date": "2023-07-20T22:00:00.000Z",
-            "name": "Company Name A",
-            "job": "Developer",
-            "location": "Hamburg",
-            "success": "❓"
-        },
-        ...
-    ]
-}
+[
+    {
+        "date": "2023-07-20T22:00:00.000Z",
+        "name": "Company Name A",
+        "job": "Developer",
+        "location": "Hamburg",
+        "success": "❓"
+    },
+    ...
+]
 ```
 
 ## Usage
