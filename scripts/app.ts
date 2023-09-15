@@ -21,8 +21,7 @@ for (const property of properties) {
 
 async function printTableBody (event: Event): Promise<void> {
   const response = await fetch('http://localhost:8080/companies.json')
-  const data = await response.json()
-  const companies: Company[] = data.companies
+  const companies: Company[] = await response.json()
   const column = (event.target as Element).id as Property
   companies.sort((column === 'date') ? (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime() : (a, b) => a[column].localeCompare(b[column]))
   // erase table body
