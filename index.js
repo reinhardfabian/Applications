@@ -55,6 +55,10 @@ function isValidNote(note) {
   return typeof note === 'object' && typeof note.content === 'string' && !isNaN(new Date(note.date).getTime())
 }
 
+function isValidCompany(company) {
+  return typeof company === 'object' && !isNaN(new Date(company.date).getTime())
+}
+
 function createNote(note) {
   notes.push(note);
 
@@ -63,10 +67,28 @@ function createNote(note) {
   }
 }
 
+function createCompany(company) {
+  companies.push(company);
+
+  if (companies.length > MAX_NOTES) {
+    companies.shift()
+  }
+}
+
 function formatNote(note) {
   return {
     content: note.content.substring(0, 200),
     date: new Date(note.date),
+  }
+}
+
+function formatCompany(company) {
+  return {
+    date: new Date(company.date),
+    name: company.name.substring(0, 200),
+    job: company.job.substring(0, 200),
+    location: company.location.substring(0, 200),
+    success: company.success.substring(0, 200),
   }
 }
 
@@ -94,30 +116,26 @@ const app_spa = `
   </table>
   </p>
   <p>
-  <form action="/my-handling-form-page" method="post">
+  <form id="app_form">
     <ul>
       <li>
-        <label for="date">Date:</label>
-        <input type="date" id="date" name="job_date" />
-      </li>
-      <li>
         <label for="companyname">Name:</label>
-        <input type="text" id="companyname" name="company_name" />
+        <input type="text" id="companyname" name="name" />
       </li>
       <li>
-        <label for="job_date">Job:</label>
-        <input type="text" id="jobname" name="job_name" />
+        <label for="job_name">Job:</label>
+        <input type="text" id="jobname" name="job" />
       </li>
       <li>
         <label for="joblocation">Location:</label>
-        <input type="text" id="joblocation" name="job_location" />
+        <input type="text" id="joblocation" name="location" />
       </li>
       <li>
         <label for="success">Success:</label>
-        <input type="text" id="success" name="job_success" value="💩 or ❓ or ✅"/>
+        <input type="text" id="success" name="success" value="💩 or ❓ or ✅"/>
       </li>
       <li class="button">
-        <button type="submit">Send your application info</button>
+        <input type="submit" value="Send your application info" />
       </li>
     </ul>
   </form>
@@ -202,6 +220,16 @@ router.post('/new_note_spa', (req, res) => {
   }
 
   createNote(formatNote(req.body))
+
+  res.status(201).send({ message: 'note created' })
+})
+
+router.post('/new_app_spa', (req, res) => {
+  if (!isValidCompany(req.body)) {
+    return res.send('invalid company').status(400)
+  }
+
+  createCompany(formatCompany(req.body))
 
   res.status(201).send({ message: 'note created' })
 })

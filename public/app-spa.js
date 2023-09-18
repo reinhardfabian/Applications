@@ -1,4 +1,6 @@
 "use strict";
+let companies = [];
+
 const properties = ['date', 'name', 'job', 'location', 'success'];
 const trHead = document.getElementById('trhead');
 for (const property of properties) {
@@ -11,7 +13,7 @@ for (const property of properties) {
 document.getElementById('date').dispatchEvent(new MouseEvent('click'));
 async function printTableBody(event) {
     const response = await fetch('/exampleapp/app.json');
-    const companies = await response.json();
+    companies = await response.json();
     const column = event.target.id;
     companies.sort((column === 'date') ? (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime() : (a, b) => a[column].localeCompare(b[column]));
     // erase table body
@@ -30,3 +32,30 @@ async function printTableBody(event) {
     document.getElementById('caption').textContent = `${companies.length} applications`;
 }
 // document.addEventListener('DOMContentLoaded', init)
+
+window.onload = (e) => {
+    var form = document.getElementById("app_form")
+    form.onsubmit = (e) => {
+        e.preventDefault()
+
+        const formData = new FormData(form);
+        formData.append('date', new Date());
+        companies.push(Object.fromEntries(formData));
+
+        e.target.elements[0].value = "";
+        e.target.elements[1].value = "";
+        e.target.elements[2].value = "";
+        e.target.elements[3].value = "";
+        document.getElementById('date').dispatchEvent(new MouseEvent('click'));
+
+        fetch('/exampleapp/new_app_spa',
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify(Object.fromEntries(formData))
+            })
+            .then(function (res) { console.log(res) })
+    }
+}
