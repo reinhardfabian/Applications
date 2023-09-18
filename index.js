@@ -27,11 +27,11 @@ const notes = [
   },
 ]
 
-const isValidNote = note => {
+function isValidNote(note){
   return typeof note === 'object' && typeof note.content === 'string' && !isNaN(new Date(note.date).getTime())
 }
 
-const createNote = note => {
+function createNote(note){
   notes.push(note);
 
   if (notes.length > MAX_NOTES) {
@@ -39,7 +39,7 @@ const createNote = note => {
   }
 }
 
-const formatNote = note => {
+function formatNote(note){
   return {
     content: note.content.substring(0, 200),
     date: new Date(note.date),

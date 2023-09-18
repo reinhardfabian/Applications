@@ -4,7 +4,7 @@ function redrawNotes() {
   let ul = document.createElement('ul')
   ul.setAttribute('class', 'notes')
 
-  notes.forEach(function (note) {
+  notes.forEach( (note) => {
     let li = document.createElement('li')
 
     ul.appendChild(li);
