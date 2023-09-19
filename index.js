@@ -116,23 +116,23 @@ const app_spa = `
   </table>
   </p>
   <p>
-  <form id="app_form">
+  <form id="app_form" name="appnameform">
     <ul>
       <li>
         <label for="companyname">Name:</label>
-        <input type="text" id="companyname" name="name" />
+        <input type="text" id="companyname" name="name" autocomplete="off" required />
       </li>
       <li>
-        <label for="job_name">Job:</label>
-        <input type="text" id="jobname" name="job" />
+        <label for="jobname">Job:</label>
+        <input type="text" id="jobname" name="job" autocomplete="off" required />
       </li>
       <li>
         <label for="joblocation">Location:</label>
-        <input type="text" id="joblocation" name="location" />
+        <input type="text" id="joblocation" name="location" autocomplete="off" required />
       </li>
       <li>
-        <label for="success">Success:</label>
-        <input type="text" id="success" name="success" value="💩 or ❓ or ✅"/>
+        <label for="jobsuccess">Success:</label>
+        <input type="text" id="jobsuccess" name="success" value="💩 or ❓ or ✅" autocomplete="off" required />
       </li>
       <li class="button">
         <input type="submit" value="Send your application info" />
@@ -231,7 +231,7 @@ router.post('/new_app_spa', (req, res) => {
 
   createCompany(formatCompany(req.body))
 
-  res.status(201).send({ message: 'note created' })
+  res.status(201).send({ message: 'company created' })
 })
 
 app.use(PATH_PREFIX, router)
