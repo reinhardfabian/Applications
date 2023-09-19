@@ -36,7 +36,7 @@ You need a **companies.json** File in your root directory, for example:
 
 Point your browser to http://localhost:5000/exampleapp/
 
-This is only a small SPA (single page application) using express.js for serving a HTML-Table via DOM scripting. No database backend, just a json file.
+This is only a small SPA (single page application) using express.js for serving a HTML-Table via DOM scripting. No database backend needed, just a json file.
 I just need something to play with JSON, Fetch & GitHub. 🤣
 
 ## License
