@@ -1,3 +1,4 @@
+let companies = require('./companies.json')
 const express = require('express')
 const path = require('path')
 
@@ -27,29 +28,6 @@ const notes = [
   },
 ]
 
-const companies = [
-  {
-    date: new Date('2023-07-20'),
-    name: "BlaBla",
-    job: "Full-Stack Softwareentwickler",
-    location: "Hamburg",
-    success: "❓"
-  },
-  {
-    date: new Date('2023-07-16'),
-    name: "BlubBlub",
-    job: "Web Application Developer",
-    location: "Wilhelmshaven",
-    success: "✅"
-  },
-  {
-    date: new Date('2023-07-20'),
-    name: "fooBar",
-    job: "Backend Entwickler",
-    location: "Hamburg",
-    success: "💩"
-  },
-]
 
 function isValidNote(note) {
   return typeof note === 'object' && typeof note.content === 'string' && !isNaN(new Date(note.date).getTime())
