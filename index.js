@@ -1,4 +1,4 @@
-let companies = require('./companies.json')
+const companies = require('./companies.json')
 const express = require('express')
 const path = require('path')
 
