@@ -14,7 +14,7 @@
 
 ## Installation
 ```
-npx http-server 
+node index.js
 ```
 
 You need a **companies.json** File in your root directory, for example: 
@@ -22,7 +22,7 @@ You need a **companies.json** File in your root directory, for example:
 ```
 [
     {
-        "date": "2023-07-20T22:00:00.000Z",
+        "date": "2023-07-20",
         "name": "Company Name A",
         "job": "Developer",
         "location": "Hamburg",
@@ -34,9 +34,9 @@ You need a **companies.json** File in your root directory, for example:
 
 ## Usage
 
-Point your browser to http://localhost:8080/index.html
+Point your browser to http://localhost:5000/exampleapp/
 
-This is only a demo for generating a HTML-Table via DOM scripting.
+This is only a express.js demo for generating a HTML-Table via DOM scripting.
 I just need something to play with JSON, Fetch & GitHub. 🤣
 
 ## License
